@@ -1,0 +1,13 @@
+# --- Abyssal Prism Global Matrix System Dependencies ---
+# Target Environment: NVIDIA Jetson Thor / AGX Orin / DGX H100
+# CUDA Toolkit Compilation: nvcc >= 12.2
+
+numpy>=1.24.3
+scipy>=1.11.1
+torch>=2.1.0+cu121
+tensorrt>=8.6.1
+pydantic>=2.5.2
+# NVIDIA Robotic & Vision Core bindings
+isaac-ros-perception>=2.1.0
+modulus>=24.01
+omniverse-nucleus-client>=23.11
