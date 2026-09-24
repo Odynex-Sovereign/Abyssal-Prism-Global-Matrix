@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  abyssal-crisis-ingress:
+    image: nvcr.io/nvidia/isaac/isaac-ros-base:v2.1
+    container_name: abyssal_crisis_node
+    restart: always
+    network_mode: "host"
+    runtime: nvidia
+    volumes:
+      - /dev:/dev
+      - ./pipelines:/app/pipelines
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video
+    devices:
+      - /dev/nvidiactl:/dev/nvidiactl
+    command: python3 /app/pipelines/crisis_orchestration.py
+
+  abyssal-modulus-simulation:
+    image: nvcr.io/nvidia/modulus:24.01
+    container_name: abyssal_physics_ml_core
+    restart: always
+    depends_on:
+      - abyssal-crisis-ingress
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+
+  abyssal-local-nucleus:
+    image: nvcr.io/nvidia/omniverse/nucleus-client:23.11
+    container_name: abyssal_global_nucleus_fabric
+    restart: always
+    environment:
+      - OMNI_LOCAL_SOVEREIGNTY=TRUE
+      - TEXAS_TUTSA_LOCK=TRUE
