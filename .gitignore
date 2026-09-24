@@ -1,6 +1,31 @@
-*.i
-*.ii
-*.gpu
-*.ptx
-*.cubin
-*.fatbin
+# Compiled binaries, static libraries, and object layers
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+build/
+Build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+
+# Private AI Model Weights & Isaac ROS Node Parameter Overrides (Protected IP)
+*.pt
+*.onnx
+*.engine
+*.trt
+*.weights
+*.usd
+*.usda
+*.usdc
+
+# Local Logging Outputs & Regional Security Environment Keys
+*.log
+*.csv
+config/private_keys.env
+.env
+.DS_Store
